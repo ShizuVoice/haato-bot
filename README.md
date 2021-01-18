@@ -1,3 +1,3 @@
 # haato-bot
 
-A form from QnA Bot by yours truly.
+A fork from QnA Bot by yours truly.
