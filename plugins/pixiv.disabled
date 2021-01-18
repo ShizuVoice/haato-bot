@@ -1,0 +1,32 @@
+import discord
+import pixivpy3
+import datetime
+import sys
+import aiohttp
+import random
+
+from aiohttp import request
+from pixivpy3 import *
+from discord.ext import commands
+
+pixiv = AppPixivAPI()
+pixiv_username = open ("./plugins/pixiv/username.txt","r").read()
+pixiv_password = open ("./plugins/pixiv/password.txt","r").read()
+
+pixiv.login(pixiv_username, pixiv_password)
+
+class Pixiv(commands.Cog):
+
+    def __init__(self, bot):
+        self.bot = bot
+
+    @commands.command()
+    async def pixiv(self, ctx, *, search):
+        r = random.randint(0,30)
+        json_result = pixiv.search_illust(search)
+        illust = json_result.illusts[r]
+        for url in illust[:1]:
+            pixiv.download(url.image_urls.large)
+
+def setup(bot):
+    bot.add_cog(Pixiv(bot))
