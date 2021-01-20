@@ -15,7 +15,7 @@ These are the commands that you can use to interact with the bot. You can also l
 - `ping` - Respond with "Pong!" and latency time.
 - `say` - Make the bot say with your response. - **Usage: `h!say Hello world!`**
 - `userinfo` - Shows info of a mentioned user or yourself. - **Usage: `h!userinfo @SilentVOEZ`**
-- `avatar` - Shows you the full size of the user's profile picture. - **Usage: `h!avatar` or `q!avatar @SilentVOEZ#2523`**
+- `avatar` - Shows you the full size of the user's profile picture. - **Usage: `h!avatar` or `h!avatar @SilentVOEZ#2523`**
 - `status` - Shows the status of the computer where the bot is running on.
 - `version` - Shows the bot version.
 - `about` - Shows the about dialog of the bot.
