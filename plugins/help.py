@@ -35,12 +35,15 @@ class Help(commands.Cog):
             colour = 0xff0000
         )
 
-        embed.set_author(name='Fun')
+        embed.set_author(name='Fun and Others')
         embed.add_field(name='rps', value='Play rock, paper, scissor!', inline=False)
         embed.add_field(name='eightball', value='Ask the eightball for question.', inline=False)
         embed.add_field(name='eightballfil', value='Magtanong kay eightball ng isang katanungan.', inline=False)
-        embed.add_field(name='Cooking', value='Have some cooking tips from Akai Haato.', inline=False)
-        embed.add_field(name="[Disabled] yandere", value="Fetches images with the tag. Can't guarantee that it filters out NSFW images.", inline=False)
+        embed.add_field(name='bonk', value='Bonks a user for being too horny.')
+        embed.add_field(name='cooking', value='Have some cooking tips from Akai Haato.', inline=False)
+        embed.add_field(name='yandere', value="Fetches images with the tag. Can't guarantee that it filters out NSFW images.", inline=False)
+        embed.add_field(name='moebooru', value="Fetches images with the tag. Can't guarantee that it filters out NSFW images.", inline=False)
+        embed.add_field(name='danbooru', value="Fetches images with the tag. Can't guarantee that it filters out NSFW images.", inline=False)
 
         await author.send(embed=embed)
         await asyncio.sleep(2)
@@ -49,7 +52,7 @@ class Help(commands.Cog):
             colour = 0xff0000
         )
 
-        embed.set_author(name='[Disabled] Moderation (Administrator/Owner only)')
+        embed.set_author(name='Moderation (Administrator)')
         embed.add_field(name='pas', value='Make a public address within that channel you were on.', inline=False)
         embed.add_field(name='warn', value='Warns a member on the server.', inline=False)
         embed.add_field(name='kick', value='Kicks a member on the server.', inline=False)

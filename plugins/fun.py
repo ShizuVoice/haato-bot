@@ -119,6 +119,43 @@ class Fun(commands.Cog):
             
         print(f"{consoletime} [INFO] Choose triggered. {ctx.author} questioned: '{choice1} or {choice2}' Answer: '{choicebuffer}'")
         await ctx.send(f'{responsebuffer}')
+    
+    @commands.command()
+    async def roll(self, ctx):
+        rolls = random.randint(0, 100)
         
+        await ctx.send(rolls)
+
+    @commands.command()
+    async def bonk(self, ctx, member: discord.Member, *, limit = None):
+        consoletime = datetime.datetime.now()
+
+        if member == ctx.author:
+            await ctx.send("Why are you going to bonk yourself?")
+        else:
+            if not limit:
+                await ctx.send(f"{member.mention}, you got bonked by {ctx.author.mention} for being too horny.")
+                print(f"{consoletime} [INFO] Bonk triggered. {ctx.author} bonked {member}.")
+            else:
+                try:
+                    limit = int(limit)
+                    await ctx.send(f"{member.mention}, you got bonked by {ctx.author.mention} {limit} times for being too horny.")
+                    print(f"{consoletime} [INFO] Bonk triggered. {ctx.author} bonked {member} {limit} times.")
+                except:
+                    await ctx.send("Sorry, I only read numbers.")
+
+    @bonk.error
+    async def bonk_error(self, ctx, error):
+
+        #Bot Prefix Read
+        with open (f"./prefix.txt", "r") as botprefix:
+            prefix = botprefix.read()
+
+        if isinstance(error, commands.MissingRequiredArgument):
+            await ctx.send(f"Which user you are going to bonk? \n Usage: `{prefix}bonk @user <# of times (optional)>`")
+
+        botprefix.close()
+
+
 def setup(bot):
     bot.add_cog(Fun(bot))

@@ -22,11 +22,11 @@ class Events(commands.Cog):
         if message.author == self.bot.user:
             return
 
-        message.content.lower()
-        if message.content.startswith('silentvoice'):
+        trigger = message.content.lower()
+        if "silentvoice" in trigger:
             await message.channel.send("<@170093603530473472>")
             print(f"{consoletime} [INFO] Event triggered. 'silentvoice'.")
-        elif message.content.startswith('sv'):
+        elif "sv" in trigger:
             await message.channel.send("<@170093603530473472>")
             print(f"{consoletime} [INFO] Event triggered. 'sv'.")
 

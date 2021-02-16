@@ -57,6 +57,10 @@ class Utility(commands.Cog):
         # tswap = psutil.swap_memory().total/1024/1024
         # pswap = round((uswap/tswap)*100)
 
+        #Bot Prefix Read
+        with open (f"./prefix.txt", "r") as botprefix:
+            prefix = botprefix.read()
+
         # PSUtil Operating System
         if psutil.LINUX:
             os = 'Linux'
@@ -70,12 +74,14 @@ class Utility(commands.Cog):
         embed.add_field(name="CPU Usage", value=f'{psutil.cpu_percent()}%', inline=True)
         embed.add_field(name="CPU Cores", value=psutil.cpu_count(), inline=True)
         embed.add_field(name="RAM Usage", value=f'{round(usedmem)}/{round(tmem)}MB ({round(pmem)}%)', inline=True)
+        embed.add_field(name="Operating System", value=os, inline=True)
         # embed.add_field(name="Swap Usage", value=f'{round(uswap)}/{round(tswap)}MB ({round(pmem)}%)', inline=True)
         embed.add_field(name="Uptime", value=f'{utime}', inline=True)
         embed.add_field(name='API Latency', value=f'{round(self.bot.latency * 1000)} ms', inline=True)
-        embed.add_field(name="Operating System", value=os, inline=True)
+        embed.add_field(name='Bot Prefix', value=f"`{prefix}`", inline=False)
         embed.set_footer(text="Bot by SilentVOEZ")
         await ctx.send(embed=embed)
+        botprefix.close()
 
 #    @commands.command()
 #    @commands.is_owner()
@@ -86,6 +92,7 @@ class Utility(commands.Cog):
     @commands.command()
     @commands.is_owner()
     async def e(self, ctx):
+        print(f"---EMERGENCY SHUTDOWN REQUESTED BY {ctx.author}---")
         await ctx.send("**--EMERGENCY SHUTDOWN--**")
         await ctx.bot.logout()
 

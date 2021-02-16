@@ -1,3 +1,6 @@
+# QnA Bot by SilentVOEZ#2523
+# plugins (QnA Bot Py Extension)
+
 import discord, datetime
 from discord.ext import commands
 

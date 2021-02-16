@@ -13,19 +13,29 @@ class General(commands.Cog):
     @commands.command()
     async def ping(self, ctx):
         consoletime = datetime.datetime.now()
-#        print(f'{consoletime} [INFO] Pinging at `{round(self.bot.latency * 1000)} ms`')
-#        await ctx.send(f'Pong! Responded for `{round(self.bot.latency * 1000)} ms`')
+        
         before = time.monotonic()
 
-        embed1 = Embed(title='Pong!', description=f':globe_with_meridians: End-to-End Delay: 0ms\n\n :book: API Latency: 0ms', colour = discord.Colour.green())
+        embed1 = Embed(title='Pong!', description=f':globe_with_meridians: End-to-End Delay: 0ms\n\n :book: API Latency: 0ms', colour = 0x707070)
  
         msg = await ctx.send(embed=embed1)
 
-        ping = (time.monotonic() - before) * 1000
-        embed2 = Embed(title='Pong!', description=f':globe_with_meridians: End-to-End Delay: {int(ping)}ms\n\n :book: API Latency: {round(self.bot.latency * 1000)}ms', colour = discord.Colour.green())
+        ping1 = (time.monotonic() - before) * 1000
+        ping2 = int(ping1)
+
+        if 0 <= ping2 <= 250:
+            embedcolor = 0x2fff24
+        elif 251 <= ping2 <= 750:
+            embedcolor = 0xfab114
+        elif 751 <= ping2 <= 1000:
+            embedcolor = 0xff1717
+        else:
+            embedcolor = 0x691e1e
+
+        embed2 = Embed(title='Pong!', description=f':globe_with_meridians: End-to-End Delay: {int(ping2)}ms\n\n :book: API Latency: {round(self.bot.latency * 1000)}ms', colour = embedcolor)
 
         await msg.edit(embed=embed2)
-        print(f'{consoletime} [INFO] Pinging with an End-to-End Delay of {int(ping)}ms and API Latency of {round(self.bot.latency * 1000)}ms')
+        print(f'{consoletime} [INFO] Pinging with an End-to-End Delay of {int(ping2)}ms and API Latency of {round(self.bot.latency * 1000)}ms')
 
     @commands.command()
     async def hello(self, ctx):
@@ -34,7 +44,7 @@ class General(commands.Cog):
     @commands.command()
     async def version(self, ctx):
         # Change the bot's version on this part
-        BotV = '0.4 Beta Version'
+        BotV = '0.6 Beta Version'
         DpyV = discord.__version__
         PyVMaj = sys.version_info.major
         PyVMin = sys.version_info.minor
@@ -93,7 +103,7 @@ class General(commands.Cog):
                 colour = member.color
             )
 
-            embed.add_field(name=f'{member}', value=f'[Link]({member.avatar_url})', inline=False)
+            embed.add_field(name=f'{member}', value=f'[Image Link]({member.avatar_url})', inline=False)
             embed.set_image(url=member.avatar_url)
 
             await ctx.send(embed=embed)
