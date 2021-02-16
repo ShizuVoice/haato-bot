@@ -20,12 +20,17 @@ These are the commands that you can use to interact with the bot. You can also l
 - `version` - Shows the bot version.
 - `about` - Shows the about dialog of the bot.
 
-**Fun**
+**Fun and Others**
 - `rps` - Play rock, paper, scissors! - **Usage: `h!rps rock`**
 - `eightball` - Ask the eightball for question. - **Usage: `h!eightball Will I get a tasty food later?`**
 - `eightballfil` - Magtanong kay eightball ng isang katanungan. **Usage: `h!eightballfil Magkaroon ba ako ng matamis na pagkain mamaya?`**
-- `cooking` - Have some cooking tips from Akai Haato. (p.s. It's not a legit cooking tip)
 - `choose` - Makes the bot choose two choices. - **Usage: `h!choose "choice 1" "choice 2"`**
+- `bonk` - Bonks a user for being too horny. - **Usage: `h!bonk @Haachama` or `h!bonk @Haachama <number of times>`**
+- `cooking` - Have some cooking tips from Akai Haato. (p.s. It's not a legit cooking tip)
+- `yandere` - Fetches images via Yande.re with the tag. Can't guarantee that it filters out NSFW images. - **Usage: `h!yandere <tag>`**
+- `moebooru` - Fetches images via Moebooru with the tag. Can't guarantee that it filters out NSFW images. - **Usage: `h!moebooru <tag>`**
+- `danbooru` - Fetches images via Danbooru with the tag. Can't guarantee that it filters out NSFW images. - **Usage: `h!danbooru <tag>`**
+
 
 **Moderation (Administrator)**
 - `pas` - Make a public address within that channel you were on.
