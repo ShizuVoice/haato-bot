@@ -24,13 +24,13 @@ bot.remove_command('help')
 @bot.event
 async def on_ready():
     prefix = open('./prefix.txt','r').read()
-    print(f'--------------------------')
+    print(f'--------------------------------')
     print(f'Logged in as: {bot.user.name}')
     print(f'With ID: {bot.user.id}')
-    print(f'--------------------------')
+    print(f'--------------------------------')
     print(f'Ensure that the bot has adequate permission to prevent errors while in use.')
-    print(f'--------------------------')
-    activity = discord.Game(name=f"{prefix}help | Early version", type=3)
+    print(f'--------------------------------')
+    activity = discord.Game(name=f"{prefix}help | Beta Version", type=3)
     await bot.change_presence(status=discord.Status.dnd, activity=activity)
 
 # Extension commands
@@ -116,6 +116,7 @@ async def reload(ctx, extension):
 @bot.command()
 @commands.is_owner()
 async def loadall(ctx):
+    consoletime = datetime.datetime.now()
     for filename in os.listdir('./plugins'):
         consoletime = datetime.datetime.now()
         if filename.endswith('.py'):
@@ -124,10 +125,9 @@ async def loadall(ctx):
                 await asyncio.sleep(3)
                 await ctx.send(f"**{filename}** extensions loaded.")
                 print(f'{consoletime} [INFO] {filename} loaded')
-            except Exception as e:
-                await ctx.send(f"Failed to reload **{filename}**. Please check the extension's code or you were trying reloading an unloaded extension or non-exisiting extension.")
-                print(f"{consoletime} [WARNING] Failed to load {filename}. Please check the extension's code or extension does not exist.")
-                raise e
+            except:
+                print(f"{consoletime} [WARNING] Failed to reload {filename}. Please check the extension's code.")
+                pass
 
 @bot.command()
 @commands.is_owner()
@@ -135,10 +135,14 @@ async def unloadall(ctx):
     for filename in os.listdir('./plugins'):
         consoletime = datetime.datetime.now()
         if filename.endswith('.py'):
-            bot.unload_extension(f'plugins.{filename[:-3]}')
-            await asyncio.sleep(3)
-            await ctx.send(f"**{filename}** unloaded")
-            print(f'{consoletime} [INFO] {filename} extension unloaded.')
+            try:
+                bot.unload_extension(f'plugins.{filename[:-3]}')
+                await asyncio.sleep(3)
+                await ctx.send(f"**{filename}** unloaded")
+                print(f'{consoletime} [INFO] {filename} extension unloaded.')
+            except:
+                print(f"{consoletime} [WARNING] Failed to unload {filename}. Extension is already unloaded.")
+                pass
 
 @bot.command()
 @commands.is_owner()
@@ -157,11 +161,15 @@ async def shutdown(ctx, *, reason = None):
     embed.add_field(name='Uptime', value=f'{utime}', inline=False)
     embed.set_footer(text=f'All requests at this moment will be done and proceeds to shutdown.')
     await ctx.send(embed=embed)
+    print('--------------------------------')
     print(f'{consoletime} [WARNING] Bot is shutting down.')
+    print('--------------------------------')
     await asyncio.sleep(10)
     
     await ctx.bot.logout()
+    print('--------------------------------')
     print(f"Bot closed at {consoletime}")
+    print('--------------------------------')
 
 for filename in os.listdir('./plugins'):
     consoletime = datetime.datetime.now()
