@@ -15,7 +15,7 @@ These are the commands that you can use to interact with the bot. You can also l
 - `ping` - Respond with "Pong!" and latency time.
 - `say` - Make the bot say with your response. - **Usage: `h!say Hello world!`**
 - `userinfo` - Shows info of a mentioned user or yourself. - **Usage: `h!userinfo @SilentVOEZ`**
-- `avatar` - Shows you the full size of the user's profile picture. - **Usage: `h!avatar` or `h!avatar @SilentVOEZ#2523`**
+- `avatar` - Shows you the full size of the user's profile picture. - **Usage: `h!avatar` or `h!avatar @SilentVOEZ`**
 - `status` - Shows the status of the computer where the bot is running on.
 - `version` - Shows the bot version.
 - `about` - Shows the about dialog of the bot.
@@ -25,7 +25,7 @@ These are the commands that you can use to interact with the bot. You can also l
 - `eightball` - Ask the eightball for question. - **Usage: `h!eightball Will I get a tasty food later?`**
 - `eightballfil` - Magtanong kay eightball ng isang katanungan. **Usage: `h!eightballfil Magkaroon ba ako ng matamis na pagkain mamaya?`**
 - `choose` - Makes the bot choose two choices. - **Usage: `h!choose "choice 1" "choice 2"`**
-- `bonk` - Bonks a user for being too horny. - **Usage: `h!bonk @Haachama` or `h!bonk @Haachama <number of times>`**
+- `bonk` - Bonks a user for being too horny. - **Usage: `h!bonk <user> <number of times (optional)>`, `h!bonk @Haachama <number of times>`**
 - `cooking` - Have some cooking tips from Akai Haato. (p.s. It's not a legit cooking tip)
 - `yandere` - Fetches images via Yande.re with the tag. Can't guarantee that it filters out NSFW images. - **Usage: `h!yandere <tag>`**
 - `moebooru` - Fetches images via Moebooru with the tag. Can't guarantee that it filters out NSFW images. - **Usage: `h!moebooru <tag>`**
@@ -37,4 +37,4 @@ These are the commands that you can use to interact with the bot. You can also l
 - `warn` - Warns a member on the server. - **Usage: `h!warn <user> <reason>`, `h!warn @VOID Spamming on #general.`**
 - `kick` - Kicks a member on the server. - **Usage: `h!kick <user> <reason>`, `h!kick @VOID Being negative to the chat.`**
 - `ban` - Bans a member on the server. - **Usage: `h!ban <user> <reason>`, `h!ban @VOID Sent an NSFW picture on #general.`**
-- `purge` - Clears messages with a certain amount. - **Usage: `h!purge <amount> or h!purge <amount> <user?`, `h!purge 25 or h!purge 25 @VOID`**
+- `purge` - Clears messages with a certain amount. - **Usage: `h!purge <amount> or h!purge <amount> <user>`, `h!purge 25 or h!purge 25 @VOID`**
