@@ -20,16 +20,19 @@ These are the commands that you can use to interact with the bot. You can also l
 - `version` - Shows the bot version.
 - `about` - Shows the about dialog of the bot.
 
-**Fun and Others**
+**Fun Commands**
 - `rps` - Play rock, paper, scissors! - **Usage: `h!rps rock`**
+- `roll` - Rolls a number from 0 to 100.
 - `eightball` - Ask the eightball for question. - **Usage: `h!eightball Will I get a tasty food later?`**
 - `eightballfil` - Magtanong kay eightball ng isang katanungan. **Usage: `h!eightballfil Magkaroon ba ako ng matamis na pagkain mamaya?`**
-- `choose` - Makes the bot choose two choices. - **Usage: `h!choose "choice 1" "choice 2"`**
-- `bonk` - Bonks a user for being too horny. - **Usage: `h!bonk <user> <number of times (optional)>`, `h!bonk @Haachama <number of times>`**
+- `choose` - Makes the bot choose two choices. - **Usage: `h!choose "choice 1" "choice 2"` or `h!choose choice1 choice2**
+- `bonk` - Bonks a user for being too horny. - **Usage: `h!bonk <user> <number of times (optional)>`, `h!bonk @Haachama 25`**
 - `cooking` - Have some cooking tips from Akai Haato. (p.s. It's not a legit cooking tip)
-- `yandere` - Fetches images via Yande.re with the tag. Can't guarantee that it filters out NSFW images. - **Usage: `h!yandere <tag>`**
-- `moebooru` - Fetches images via Moebooru with the tag. Can't guarantee that it filters out NSFW images. - **Usage: `h!moebooru <tag>`**
-- `danbooru` - Fetches images via Danbooru with the tag. Can't guarantee that it filters out NSFW images. - **Usage: `h!danbooru <tag>`**
+
+**Booru Commands**
+- `yandere` - Fetches images via Yande.re with the tag. Can't guarantee that it filters out NSFW images. - **Usage: `h!yandere <tag> <post number (optional)>`**
+- `moebooru` - Fetches images via Moebooru with the tag. Can't guarantee that it filters out NSFW images. - **Usage: `h!moebooru <tag> <post number (optional)>`**
+- `danbooru` - Fetches images via Danbooru with the tag. Can't guarantee that it filters out NSFW images. - **Usage: `h!danbooru <tag> <post number (optional)>`**
 
 
 **Moderation (Administrator)**
