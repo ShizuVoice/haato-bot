@@ -35,8 +35,9 @@ These are the commands that you can use to interact with the bot. You can also l
 - `danbooru` - Fetches images via Danbooru with the tag. Can't guarantee that it filters out NSFW images. - **Usage: `h!danbooru <tag> <post number (optional)>`**
 
 
-**Moderation (Administrator)**
-- `pas` - Make a public address within that channel you were on.
+**Moderation Commands (Administrator/Moderator) (Beta)**
+- `changeprefix` - Replaces the old prefix with new one. - **Usage: `h!changeprefix <new prefix>`, `h!changeprefix q!`**
+- `pas` - Make a public address within that channel you were on. - **Usage: `h!pas <message>`
 - `warn` - Warns a member on the server. - **Usage: `h!warn <user> <reason>`, `h!warn @VOID Spamming on #general.`**
 - `kick` - Kicks a member on the server. - **Usage: `h!kick <user> <reason>`, `h!kick @VOID Being negative to the chat.`**
 - `ban` - Bans a member on the server. - **Usage: `h!ban <user> <reason>`, `h!ban @VOID Sent an NSFW picture on #general.`**
