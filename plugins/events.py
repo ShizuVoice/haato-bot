@@ -17,20 +17,6 @@ class Events(commands.Cog):
         print(f"{consoletime} [INFO] {self.bot.user.name} successfully connected.")
 
     @commands.Cog.listener()
-    async def on_message(self, message):
-        consoletime = datetime.datetime.now()
-        if message.author == self.bot.user:
-            return
-
-        trigger = message.content.lower()
-        if "silentvoice" in trigger:
-            await message.channel.send("<@170093603530473472>")
-            print(f"{consoletime} [INFO] Event triggered. 'silentvoice'.")
-        elif "sv" in trigger:
-            await message.channel.send("<@170093603530473472>")
-            print(f"{consoletime} [INFO] Event triggered. 'sv'.")
-
-    @commands.Cog.listener()
     async def on_command_error(self, ctx, error):
         consoletime = datetime.datetime.now()
         if isinstance(error, commands.MissingPermissions):

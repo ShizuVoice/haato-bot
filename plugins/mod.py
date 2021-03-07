@@ -10,7 +10,7 @@ class Mod(commands.Cog):
         self.bot = bot
 
     @commands.command()
-#    @commands.has_permissions(kick_members=True)
+    @commands.has_permissions(kick_members=True)
     async def warn(self, ctx, member: discord.Member, *, reason="No reason"):
         consoletime = datetime.datetime.now()
 
@@ -41,7 +41,7 @@ class Mod(commands.Cog):
         print(f"{consoletime} [INFO] User '{member.mention}' got banned by '{ctx.author.mention}' with the reason of '{reason}'.")
 
     @commands.command()
-    @commands.has_permissions(kick_members=True)
+    @commands.has_permissions(manage_messages=True)
     async def purge(self, ctx, limit = None, member: discord.Member = None):
         consoletime = datetime.datetime.now()
         await ctx.message.delete()

@@ -1,6 +1,7 @@
 import discord
 import asyncio
 from discord.ext import commands
+from discord import Embed
 
 class Help(commands.Cog):
 
@@ -9,59 +10,9 @@ class Help(commands.Cog):
 
     @commands.command(pass_context=True)
     async def help(self, ctx):
-        await ctx.send("Please enable direct messaging if you turned it off. I can't send you this 3 love le- I MEAN THE DOCS. *Baka~*")
-#        await ctx.send("Please enable direct messaging if you turned it off. I can't send you the help guide for this bot.")
-        await asyncio.sleep(2)
-        author = ctx.message.author
+        embed = Embed(title='Haato Bot Commands', description="**General Commands**\n `hello` `ping` `say` `userinfo` `avatar` `status` `version` `about`\n\n **Fun Commands**\n `rps` `roll` `eightball` `eighballfil` `choose` `bonk` `cooking`\n\n **Booru Commands - 50/50 NSFW**\n `yandere` `moebooru` `danbooru`\n\n **Moderation Commands (Beta)**\n `changeprefix` `pas` `warn` `kick` `ban` `purge` `uhelp`\n\n *For the complete guide of the commands, visit the GitHub page [here](https://www.github.com/SilentVOEZ/haato-bot).*\n\n **Note:** *DMs does not work with the bot.*", colour = 0xff0000)
 
-        embed = discord.Embed(
-            colour = 0xff0000
-        )
-
-        embed.set_author(name='General Help')
-        embed.add_field(name='hello', value='Respond with "Hello!" when bot is online.', inline=False)
-        embed.add_field(name='ping', value='Respond with "Pong!" and latency time.', inline=False)
-        embed.add_field(name='say', value='Make the bot say with your response.', inline=False)
-        embed.add_field(name='userinfo', value='Shows info of a mentioned user or yourself.', inline=False)
-        embed.add_field(name='avatar', value="Shows you the full size of the user's profile picture.", inline=False)
-        embed.add_field(name='status', value="Shows the status of the computer where the bot is running on", inline=False)
-        embed.add_field(name='version', value='Shows the bot version.', inline=False)
-        embed.add_field(name='about', value='Shows the about dialog of the bot.', inline=False)
-
-        await author.send(embed=embed)
-        await asyncio.sleep(2)
-
-        embed = discord.Embed(
-            colour = 0xff0000
-        )
-
-        embed.set_author(name='Fun and Others')
-        embed.add_field(name='rps', value='Play rock, paper, scissor!', inline=False)
-        embed.add_field(name='eightball', value='Ask the eightball for question.', inline=False)
-        embed.add_field(name='eightballfil', value='Magtanong kay eightball ng isang katanungan.', inline=False)
-        embed.add_field(name='choose', value='Lets the bot choose from your given option.', inline=False)
-        embed.add_field(name='bonk', value='Bonks a user for being too horny.', inline=False)
-        embed.add_field(name='cooking', value='Have some cooking tips from Akai Haato.', inline=False)
-        embed.add_field(name='yandere', value="Fetches images via Yande.re with the tag. Can't guarantee that it filters out NSFW images.", inline=False)
-        embed.add_field(name='moebooru', value="Fetches images via Moebooru with the tag. Can't guarantee that it filters out NSFW images.", inline=False)
-        embed.add_field(name='danbooru', value="Fetches images via Danbooru with the tag. Can't guarantee that it filters out NSFW images.", inline=False)
-
-        await author.send(embed=embed)
-        await asyncio.sleep(2)
-
-        embed = discord.Embed(
-            colour = 0xff0000
-        )
-
-        embed.set_author(name='Moderation (Administrator)')
-        embed.add_field(name='pas', value='Make a public address within that channel you were on.', inline=False)
-        embed.add_field(name='warn', value='Warns a member on the server.', inline=False)
-        embed.add_field(name='kick', value='Kicks a member on the server.', inline=False)
-        embed.add_field(name='ban', value='Bans a member on the server.', inline=False)
-        embed.add_field(name='purge', value='Clears messages with a certain amount.', inline=False)
-        embed.add_field(name='uhelp', value='Sends a DM about owner-only command.', inline=False)
-
-        await author.send(embed=embed)
+        await ctx.send(embed=embed)
 
     @commands.command(pass_context=True)
     @commands.is_owner()

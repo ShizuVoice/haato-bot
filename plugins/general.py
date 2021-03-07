@@ -16,26 +16,26 @@ class General(commands.Cog):
         
         before = time.monotonic()
 
-        embed1 = Embed(title='Pong!', description=f':globe_with_meridians: End-to-End Delay: 0ms\n\n :book: API Latency: 0ms', colour = 0x707070)
+        embed1 = Embed(title='Pong!', description=f':globe_with_meridians: Round-Trip Time: 0ms\n\n :book: API Latency: 0ms', colour = 0x707070)
  
         msg = await ctx.send(embed=embed1)
 
-        ping1 = (time.monotonic() - before) * 1000
-        ping2 = int(ping1)
+        ping = int((time.monotonic() - before) * 1000)
+        latency = int(round(self.bot.latency * 1000))
 
-        if 0 <= ping2 <= 250:
+        if 0 <= ping <= 250:
             embedcolor = 0x2fff24
-        elif 251 <= ping2 <= 750:
+        elif 251 <= ping <= 750:
             embedcolor = 0xfab114
-        elif 751 <= ping2 <= 1000:
+        elif 751 <= ping <= 1000:
             embedcolor = 0xff1717
         else:
             embedcolor = 0x691e1e
 
-        embed2 = Embed(title='Pong!', description=f':globe_with_meridians: End-to-End Delay: {int(ping2)}ms\n\n :book: API Latency: {round(self.bot.latency * 1000)}ms', colour = embedcolor)
+        embed2 = Embed(title='Pong!', description=f':globe_with_meridians: Round-Trip Time: {ping}ms\n\n :book: API Latency: {latency}ms', colour = embedcolor)
 
         await msg.edit(embed=embed2)
-        print(f'{consoletime} [INFO] Pinging with an End-to-End Delay of {int(ping2)}ms and API Latency of {round(self.bot.latency * 1000)}ms')
+        print(f'{consoletime} [INFO] Pinging with an Round-Trip Time of {ping}ms and API Latency of {latency}ms')
 
     @commands.command()
     async def hello(self, ctx):
@@ -44,7 +44,7 @@ class General(commands.Cog):
     @commands.command()
     async def version(self, ctx):
         # Change the bot's version on this part
-        BotV = '0.6 Beta Version'
+        BotV = '0.8 Beta Version'
         DpyV = discord.__version__
         PyVMaj = sys.version_info.major
         PyVMin = sys.version_info.minor
@@ -108,7 +108,7 @@ class General(commands.Cog):
 
             await ctx.send(embed=embed)
 
-# Dedicated error handling for this command
+# Dedicated error handling for certain commands
     @say.error
     async def say_error(self, ctx, error):
         consoletime = datetime.datetime.now()
