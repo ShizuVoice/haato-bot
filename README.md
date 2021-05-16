@@ -4,8 +4,8 @@ A fork from QnA Bot by yours truly.
 
 [Invite the bot to your server](https://discord.com/api/oauth2/authorize?client_id=738671808139624448&permissions=486518&scope=bot)
 
-*Note: If you invited the bot while it is offline, contact me because it causes an error to the bot by the next time it goes online because of the per server*
-*prefix function not working properly and the server ID being absent to the database.*
+*Note: If you invited the bot while it is offline, contact me right away because it causes an error to the bot by the next time it goes online due to*
+*the per server prefix function not working properly and the server ID being absent to the database.*
 
 ## Using the bot
 The bot's default command prefix is `h!` and this will call the bot.
