@@ -1,5 +1,7 @@
 # haato-bot
 
+![Haachama-chama!](https://cdn.discordapp.com/avatars/738671808139624448/b26a1ebbaf743e3768e5a5e07b34000d.webp?size=480)
+
 A general Discord bot with moderation, Booru image search, fun things, and Haachama cooking. Also a fork from QnA Bot by yours truly.
 
 [Invite the bot to your server](https://discord.com/api/oauth2/authorize?client_id=738671808139624448&permissions=486518&scope=bot)
