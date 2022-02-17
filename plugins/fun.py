@@ -10,13 +10,33 @@ class Fun(commands.Cog):
     @commands.command()
     async def rps(self, ctx, *, draw):
         consoletime = datetime.datetime.now()
-        responses = ["rock!",
-                    "paper!",
-                    "scissor!"]
+        responses = ["rock",
+                    "paper",
+                    "scissor"]
 
         responsebuffer = random.choice(responses)
+        if draw == "rock" and responsebuffer == "paper":
+            winmessage = "**Paper** wins!"
+        elif draw == "rock" and responsebuffer == "scissor":
+            winmessage = "**Rock** wins!"
+        elif draw == "paper" and responsebuffer == "rock":
+            winmessage = "**Paper** wins!"
+        elif draw == "paper" and responsebuffer == "scissor":
+            winmessage = "**Scissor** wins!"
+        elif draw == "scissor" and responsebuffer == "rock":
+            winmessage = "**Rock** wins!"
+        elif draw == "scissor" and responsebuffer == "paper":
+            winmessage = "**Scissor** wins!"
+        elif draw == "rock" and responsebuffer == "rock":
+            winmessage = "It's a draw!"
+        elif draw == "paper" and responsebuffer == "paper":
+            winmessage = "It's a draw!"
+        elif draw == "scissor" and responsebuffer == "scissor":
+            winmessage = "It's a draw!"
+        else:
+            winmessage = "Error, invalid value."
 
-        await ctx.send("It's a " + f'{responsebuffer}')
+        await ctx.send(f"You choose **{draw}**. I choose **{responsebuffer}**. \n{winmessage}")
         print(f"{consoletime} [INFO] RPS triggered. '{ctx.author}' drawed {draw}. Bot drawed {responsebuffer}")
 
     @commands.command()
@@ -53,8 +73,6 @@ class Fun(commands.Cog):
     async def eightballfil(self, ctx, *, question):
         consoletime = datetime.datetime.now()
         responses = ["Panigurado.",
-#                    "Napagpasyahan ito.",
-#                    "Walang duda.",
                     "Oo - sigurado.",
                     "Maaari kang umasa dito.",
                     "Sa nakikita ko, oo.",
@@ -64,8 +82,6 @@ class Fun(commands.Cog):
                     "Medyo malabo yung sagot, subukan mo ulit.",
                     "Magtanong ka mamaya.",
 #                    "Mas mabuti na hindi sabihin sa iyo ngayon.",
-#                    "Hindi mahuhulaan ngayon.",
-#                    "Pagtuon at magtanong muli.",
                     "Sa nakikita ko, hindi.",
                     "Ang sagot ko hindi.",
                     "Hindi.",
@@ -76,30 +92,6 @@ class Fun(commands.Cog):
 
         await ctx.send(f'{responsebuffer}')
         print(f"{consoletime} [INFO] Eightballfil triggered. Question: '{question}' Answer: '{responsebuffer}'")
-
-    @commands.command()
-    async def cooking(self, ctx):
-        responses = ['https://www.youtube.com/watch?v=h2CfS9akvVo',
-                    'https://www.youtube.com/watch?v=xBqWAQodhFg',
-                    'https://www.youtube.com/watch?v=iGUzLFFKf7w',
-                    'https://www.youtube.com/watch?v=HQvX9ClXsWE',
-                    'https://www.youtube.com/watch?v=0y6vH-AZKMk',
-                    'https://www.youtube.com/watch?v=S9OLBMG0-nY',
-                    'https://www.youtube.com/watch?v=NRKsqut_FUw',
-                    'https://www.youtube.com/watch?v=9zJMVHULJ0c',
-                    'https://www.youtube.com/watch?v=rAEjfEd8uSk',
-                    'https://www.youtube.com/watch?v=XTlDdGA5cO8',
-                    'https://www.youtube.com/watch?v=cGxKncDHY_U',
-                    'https://www.youtube.com/watch?v=kPBZOjh-tP4',
-                    'https://www.youtube.com/watch?v=R9dLe4vOfz8',
-                    'https://www.youtube.com/watch?v=D1t0NsYy4mI',
-                    'https://www.youtube.com/watch?v=FAQQUMcRj_Q',
-                    'https://www.youtube.com/watch?v=B5KoNaDvfmc',
-                    'https://www.youtube.com/watch?v=A_DQiVAJrrc',
-                    'https://www.youtube.com/watch?v=TlAi_TVzO9E',
-                    'https://www.youtube.com/watch?v=IT186xDTwUU',
-                    'https://www.youtube.com/watch?v=cC7y0ENWZoQ']
-        await ctx.send(f'{random.choice(responses)}')
 
     @commands.command()
     async def choose(self, ctx, choice1: commands.clean_content, choice2: commands.clean_content):
@@ -121,10 +113,36 @@ class Fun(commands.Cog):
         await ctx.send(f'{responsebuffer}')
     
     @commands.command()
-    async def roll(self, ctx):
-        rolls = random.randint(0, 100)
-        
-        await ctx.send(rolls)
+    async def roll(self, ctx, value = 100):
+        consoletime = datetime.datetime.now()
+        if value == 100:
+            rolls = random.randint(0, 100)
+        else:
+            offset = [10,
+                      15,
+                      20,
+                      25,
+                      40,
+                      50]
+                      
+            offres = random.choice(offset)
+                      
+            trolls = random.randint(0, value)
+            
+            if (trolls % 2) == 0:
+                finalvalue = value + offres
+                rolls = random.randint(0, finalvalue)
+            else:
+                finalvalue = value - offres
+                rolls = random.randint(0, finalvalue)
+            
+        print(f"{consoletime} [INFO] Roll triggered. {ctx.author} rolled {value} and it came out {rolls}")
+        if rolls == 69:
+            await ctx.send(f'{rolls} ||*nice*||')
+        if rolls == 727:
+            await ctx.send(f'{rolls} **WYSI**')
+        else:
+            await ctx.send(rolls)
 
     @commands.command()
     async def bonk(self, ctx, member: discord.Member, *, limit = None):
@@ -143,6 +161,26 @@ class Fun(commands.Cog):
                     print(f"{consoletime} [INFO] Bonk triggered. {ctx.author} bonked {member} {limit} times.")
                 except:
                     await ctx.send("Sorry, I only read numbers.")
+
+    @commands.command()
+    async def loli(self, ctx):
+        consoletime = datetime.datetime.now()
+        response = ["Moshi moshi FBI desu.",
+                    "Don't ever try it.",
+                    "This man right here officer.",
+                    f"Officer, this user {ctx.author.mention} is into lolis again.",
+                    "Suspicious.",
+                    "*stares*",
+                    ":police_officer:",
+                    ":oncoming_police_car:",
+                    "FBI OPEN UP!!!",
+                    "You are under arrest!",
+                    "https://tenor.com/view/fbi-open-up-fbi-open-up-breaking-in-gif-15644236"]
+
+        responsebuffer = random.choice(response)
+
+        await ctx.send(f"{responsebuffer}")
+        print(f"{consoletime} [INFO] Loli triggered by {ctx.author}")
 
     @bonk.error
     async def bonk_error(self, ctx, error):

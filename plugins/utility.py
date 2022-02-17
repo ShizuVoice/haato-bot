@@ -1,20 +1,20 @@
 import discord
+import os
+import asyncio
 import datetime
 import time
 import psutil
 import sys
+import platform
 from discord.ext import commands
 
 start_time = time.time()
+consoletime = datetime.datetime.now()
 
 class Utility(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
-        
-#    def restart_program():
-#        python = sys.executable
-#        os.execl(python, python, * sys.argv)
 
 # Status Cycle
     @commands.command()
@@ -33,68 +33,113 @@ class Utility(commands.Cog):
         await self.bot.change_presence(status=discord.Status.dnd, activity=discord.Game(name=f'{cactivity}', type=3))
 
 # Utility
-    @commands.command(pass_context=True)
-    async def status(self, ctx):
-        # Time
-        current_time = time.time()
-        difference = int(round(current_time - start_time))
-        utime = str(datetime.timedelta(seconds=difference))
+    @commands.command()
+    @commands.is_owner()
+    async def sysinfo(self, ctx):
+        
+        #Platform call
+        osname = platform.system()
+        osrelease = platform.release()
+        machine = platform.machine()
+        platformv = platform.platform()
+        sysname = platform.node()
 
         embed = discord.Embed(
-            colour = discord.Colour.green()
+            colour = 0xB8650C
         )
 
-        # PSUtil - RAM Usage
-        dict(psutil.virtual_memory()._asdict())
-        usedmem = psutil.virtual_memory().used/1024/1024
-        # activemem = psutil.virtual_memory().active
-        tmem = psutil.virtual_memory().total/1024/1024
-        pmem = round((usedmem/tmem)*100)
-
-        # PSUtil - Swap Memory Usage
-        # dict(psutil.swap_memory()._asdict())
-        # uswap = psutil.swap_memory().used/1024/1024
-        # tswap = psutil.swap_memory().total/1024/1024
-        # pswap = round((uswap/tswap)*100)
-
-        #Bot Prefix Read
-        with open (f"./prefix.txt", "r") as botprefix:
-            prefix = botprefix.read()
-
-        # PSUtil Operating System
-        if psutil.LINUX:
-            os = 'Linux'
-        elif psutil.MACOS:
-            os = 'MacOS'
-        elif psutil.WINDOWS:
-            os = 'Windows'
-        else:
-            os = 'Unknown'
-        embed.set_author(name='System Monitor')
-        embed.add_field(name="CPU Usage", value=f'{psutil.cpu_percent()}%', inline=True)
-        embed.add_field(name="CPU Cores", value=psutil.cpu_count(), inline=True)
-        embed.add_field(name="RAM Usage", value=f'{round(usedmem)}/{round(tmem)}MB ({round(pmem)}%)', inline=True)
-        embed.add_field(name="Operating System", value=os, inline=True)
-        # embed.add_field(name="Swap Usage", value=f'{round(uswap)}/{round(tswap)}MB ({round(pmem)}%)', inline=True)
-        embed.add_field(name="Uptime", value=f'{utime}', inline=True)
-        embed.add_field(name='API Latency', value=f'{round(self.bot.latency * 1000)} ms', inline=True)
-        embed.add_field(name='Bot Prefix', value=f"`{prefix}`", inline=False)
-        embed.set_footer(text="Bot by SilentVOEZ")
+        embed.set_author(name='System Info')
+        embed.add_field(name="Operating System", value=osname, inline=True)
+        embed.add_field(name="Version", value=osrelease, inline=True)
+        embed.add_field(name="Architecture Type", value=machine, inline=False)
+        embed.add_field(name="Full Platform Name", value=platformv, inline=False)
+        embed.add_field(name="System Name", value=sysname, inline=False)
         await ctx.send(embed=embed)
-        botprefix.close()
 
-#    @commands.command()
-#    @commands.is_owner()
-#    async def reboot(self, ctx):
-#        await ctx.send('Rebooting...')
-#        restart_program()
+    @commands.command()
+    @commands.is_owner()
+    async def owner(self, ctx):
+        try:
+            await ctx.send("You are part of the \"Owner\" group.")
+        except:
+            pass
 
     @commands.command()
     @commands.is_owner()
     async def e(self, ctx):
         print(f"---EMERGENCY SHUTDOWN REQUESTED BY {ctx.author}---")
         await ctx.send("**--EMERGENCY SHUTDOWN--**")
-        await ctx.bot.logout()
+        await ctx.bot.close()
+
+    @commands.command()
+    @commands.is_owner()
+    async def sudoreboot(self, ctx, *, reason = None):
+        embed = discord.Embed(colour = discord.Colour.red())
+    
+        current_time = time.time()
+        difference = int(round(current_time - start_time))
+        utime = str(datetime.timedelta(seconds=difference))
+    
+        embed.set_author(name='Haato Bot Notice')
+        embed.set_thumbnail(url='https://i.imgur.com/YyIPdSf.png')
+        embed.add_field(name='Status', value='System is rebooting.', inline=False)
+        embed.add_field(name='Reason', value=f'{reason}', inline=False)
+        embed.add_field(name='Uptime', value=f'{utime}', inline=False)
+        embed.set_footer(text=f'All requests at this moment will be done and system will restart. Bot owner needs to manually start the bot after system restart.')
+        await ctx.send(embed=embed)
+        print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
+        print('--------------------------------')
+        print(f'{consoletime} [WARNING] SYSTEM IS REBOOTING. NEED MANUAL START AFTER THIS ACTION.')
+        print('--------------------------------')
+
+        await asyncio.sleep(10)
+
+        if psutil.WINDOWS:
+            os.system('shutdown -r -f -t 0')
+        else:
+            os.system('sudo shutdown -r now')
+
+    @commands.command()
+    @commands.is_owner()
+    async def sudohalt(self, ctx, *, reason = None):
+        embed = discord.Embed(colour = discord.Colour.red())
+    
+        current_time = time.time()
+        difference = int(round(current_time - start_time))
+        utime = str(datetime.timedelta(seconds=difference))
+    
+        embed.set_author(name='Haato Bot Notice')
+        embed.set_thumbnail(url='https://i.imgur.com/YyIPdSf.png')
+        embed.add_field(name='Status', value='System is shutting down.', inline=False)
+        embed.add_field(name='Reason', value=f'{reason}', inline=False)
+        embed.add_field(name='Uptime', value=f'{utime}', inline=False)
+        embed.set_footer(text=f'All requests at this moment will be done and system will restart.')
+        await ctx.send(embed=embed)
+        print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
+        print('--------------------------------')
+        print(f'{consoletime} [WARNING] SYSTEM IS SHUTTING DOWN.')
+        print('--------------------------------')
+
+        await asyncio.sleep(10)
+
+        if psutil.WINDOWS:
+            os.system('shutdown -r -f -t 0')
+        else:
+            os.system('sudo shutdown -r now')
+
+    @commands.command()
+    @commands.is_owner()
+    async def restart(self, ctx):
+        consoletime = datetime.datetime.now()
+        await ctx.send('Bot is rebooting...')
+        print('--------------------------------')
+        print(f'{consoletime} [WARNING] Bot is rebooting...')
+        print('--------------------------------')
+        await asyncio.sleep(5)
+
+        args = sys.argv[:]  # get shallow copy of running script args
+        args.insert(0, sys.executable)  # give it the executable
+        os.execv(sys.executable, args)  # execute the script with current args, effectively relaunching it, can modify args above to change how it relaunches
 
 def setup(bot):
     bot.add_cog(Utility(bot))

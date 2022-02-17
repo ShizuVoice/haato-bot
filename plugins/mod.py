@@ -10,7 +10,7 @@ class Mod(commands.Cog):
         self.bot = bot
 
     @commands.command()
-    @commands.has_permissions(kick_members=True)
+    @commands.has_permissions(manage_messages=True)
     async def warn(self, ctx, member: discord.Member, *, reason="No reason"):
         consoletime = datetime.datetime.now()
 

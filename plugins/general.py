@@ -44,7 +44,7 @@ class General(commands.Cog):
     @commands.command()
     async def version(self, ctx):
         # Change the bot's version on this part
-        BotV = '0.8 Beta Version'
+        BotV = '220210.0 Beta'
         DpyV = discord.__version__
         PyVMaj = sys.version_info.major
         PyVMin = sys.version_info.minor
@@ -75,7 +75,12 @@ class General(commands.Cog):
     async def userinfo(self, ctx, member: discord.Member = None):
         member = ctx.author if not member else member
 
-        roles = [role for role in member.roles]
+        try:
+            roles = [role for role in member.roles]
+            roles = roles[::-1]
+        except Exception as e:
+            await ctx.send("Error!")
+            raise e
 
         embed = discord.Embed(colour=member.color)
 
@@ -85,8 +90,8 @@ class General(commands.Cog):
 
         embed.add_field(name='Server nickname:', value=member.display_name)
 
-        embed.add_field(name='Created at:', value=member.created_at.strftime("%a, %#d %B %Y, %I:%M %p UTC"))
-        embed.add_field(name='Joined at:', value=member.joined_at.strftime("%a, %#d %B %Y, %I:%M %p UTC"))
+        embed.add_field(name='Created at:', value=member.created_at.strftime("%a, %d %B %Y, %I:%M %p UTC"))
+        embed.add_field(name='Joined at:', value=member.joined_at.strftime("%a, %d %B %Y, %I:%M %p UTC"))
 
         embed.add_field(name=f"Roles ({len(roles)})", value=" ".join([role.mention for role in roles]), inline=False)
         embed.add_field(name='Top role:', value=member.top_role.mention)
@@ -97,16 +102,23 @@ class General(commands.Cog):
 
     @commands.command()
     async def avatar(self, ctx, member: discord.Member = None):
-            member = ctx.author if not member else member
+        member = ctx.author if not member else member
 
-            embed = discord.Embed(
-                colour = member.color
-            )
+        embed = discord.Embed(
+            colour = member.color
+        )
 
-            embed.add_field(name=f'{member}', value=f'[Image Link]({member.avatar_url})', inline=False)
-            embed.set_image(url=member.avatar_url)
+        embed.add_field(name=f'{member}', value=f'[Image Link]({member.avatar_url})', inline=False)
+        embed.set_image(url=member.avatar_url)
 
-            await ctx.send(embed=embed)
+        await ctx.send(embed=embed)
+
+    @commands.command()
+    async def invite(self, ctx):
+        author = ctx.message.author
+        await ctx.message.add_reaction("📬")
+        await author.send("https://discord.com/api/oauth2/authorize?client_id=738671808139624448&permissions=486518&scope=bot")
+        
 
 # Dedicated error handling for certain commands
     @say.error
