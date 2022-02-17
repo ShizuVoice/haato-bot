@@ -1,2 +1,3 @@
-discord.py==1.6.0
+discord.py==1.7.3
 psutil==5.8.0
+requests
