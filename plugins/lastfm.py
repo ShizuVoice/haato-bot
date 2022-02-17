@@ -55,26 +55,17 @@ class lastfm(commands.Cog):
                 playcount = (data['user']['playcount'])
 
                 #Recent Tracks
-                track0artist = (data2['recenttracks']['track'][0]['artist']['#text'])
-                track0title = (data2['recenttracks']['track'][0]['name'])
-                track1artist = (data2['recenttracks']['track'][1]['artist']['#text'])
-                track1title = (data2['recenttracks']['track'][1]['name'])
-                track2artist = (data2['recenttracks']['track'][2]['artist']['#text'])
-                track2title = (data2['recenttracks']['track'][2]['name'])
-                track3artist = (data2['recenttracks']['track'][3]['artist']['#text'])
-                track3title = (data2['recenttracks']['track'][3]['name'])
-                track4artist = (data2['recenttracks']['track'][4]['artist']['#text'])
-                track4title = (data2['recenttracks']['track'][4]['name'])
-                track5artist = (data2['recenttracks']['track'][5]['artist']['#text'])
-                track5title = (data2['recenttracks']['track'][5]['name'])
-                track6artist = (data2['recenttracks']['track'][6]['artist']['#text'])
-                track6title = (data2['recenttracks']['track'][6]['name'])
-                track7artist = (data2['recenttracks']['track'][7]['artist']['#text'])
-                track7title = (data2['recenttracks']['track'][7]['name'])
-                track8artist = (data2['recenttracks']['track'][8]['artist']['#text'])
-                track8title = (data2['recenttracks']['track'][8]['name'])
-                track9artist = (data2['recenttracks']['track'][9]['artist']['#text'])
-                track9title = (data2['recenttracks']['track'][9]['name'])
+                artist_list = []
+                title_list = []
+                artist_title_list = []
+
+                for i in range(10):
+                    artist_list.append(data2['recenttracks']['track'][i]['artist']['#text'])
+                    title_list.append(data2['recenttracks']['track'][i]['name'])
+
+                for title_, artist_ in zip(title_list, artist_list):
+                    res_concat = '{0} - {1}'.format(artist_, title_)
+                    artist_title_list.append(res_concat)
 
                 embed = discord.Embed(title=f"Last.fm - {username}", colour=0xba0000, url=url)
                 embed.set_thumbnail(url=profile_pic)
@@ -85,11 +76,13 @@ class lastfm(commands.Cog):
                 try:
                     now_playing = (data2['recenttracks']['track'][0]['@attr']['nowplaying'])
                     if "true" in now_playing:
-                        embed.add_field(name='Now Playing', value=f'{track0artist} - {track0title}', inline=False)
+                        current_track = '{0} - {1}'.format(artist_list[0], title_list[0])
+                        embed.add_field(name='Now Playing', value=current_track, inline=False)
                 except:
                     pass
 
-                embed.add_field(name='Recent Tracks', value=f'{track0artist} - {track0title} \n {track1artist} - {track1title} \n {track2artist} - {track2title} \n {track3artist} - {track3title} \n {track4artist} - {track4title} \n {track5artist} - {track5title} \n {track6artist} - {track6title} \n {track7artist} - {track7title} \n {track8artist} - {track8title} \n {track9artist} - {track9title}', inline=False)
+                recent_tracks = ' \n '.join(artist_title_list)
+                embed.add_field(name='Recent Tracks', value=recent_tracks, inline=False)
         
             except Exception as e:
                 await ctx.send('Error! - User not found')
