@@ -41,7 +41,7 @@ These are the commands that you can use to interact with the bot. You can also l
 - `moebooru` - Fetches images via Moebooru with the tag. Can't guarantee that it filters out NSFW images. - **Usage: `h!moebooru <tag> <post number (optional)>`**
 - `danbooru` - Fetches images via Danbooru with the tag. Can't guarantee that it filters out NSFW images. - **Usage: `h!danbooru <tag> <post number (optional)>`**
 
-**Last.fm Commands (Beta)**
+**Last.fm Commands**
 - `lfmuser` - Fetches basic last.fm data. - **Usage: `h!lfmuser SilentVOEZ`**
 - `lfmnp` - Shows the user's now playing. - **Usage: `h!lfmnp SilentVOEZ`**
 
